@@ -1,3 +1,4 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://movie-recommendation-system-unbf.onrender.com";
 // Utility to fetch and append unique similar movies for infinite scroll
 import { fetchMovieDetailsWithCredits } from './fetchMovieDetails';
 
@@ -5,7 +6,7 @@ export const fetchInfiniteScrollMovies = async (movies, API_KEY, setMovies) => {
   const visibleMovieIds = movies.map((movie) => movie.id || movie.tmdbId).filter(Boolean);
   if (!visibleMovieIds.length) return;
   try {
-    const response = await fetch('/similar', {
+  const response = await fetch(`${API_BASE_URL}/similar`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ movie_ids: visibleMovieIds }),

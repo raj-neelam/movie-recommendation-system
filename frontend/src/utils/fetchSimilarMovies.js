@@ -1,6 +1,7 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://movie-recommendation-system-unbf.onrender.com";
 export const fetchSimilarMovies = async (movieId, setMovies, handleFindSimilarMovies, existingMovies = []) => {
   try {
-    const response = await fetch('/similar', {
+  const response = await fetch(`${API_BASE_URL}/similar`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

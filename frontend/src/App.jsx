@@ -22,6 +22,7 @@ const App = () => {
   const [showAISuggested, setShowAISuggested] = useState(false);
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://movie-recommendation-system-unbf.onrender.com";
 
   // Helper to clear previous movie images from memory
   const clearPreviousImages = () => {
@@ -66,7 +67,7 @@ const App = () => {
 
       setLoading(true);
       try {
-        const listResponse = await fetch('/list');
+        const listResponse = await fetch(`${API_BASE_URL}/list`);
         const movieList = await listResponse.json();
         // Filter out invalid IDs (e.g., 0 or null)
         const validMovies = movieList.filter(movie => movie.tmdbId && movie.tmdbId > 0);
@@ -97,7 +98,7 @@ const App = () => {
     const fetchAndCacheMovieList = async () => {
       if (!window.cachedMovieList) {
         try {
-          const response = await fetch('/list');
+          const response = await fetch(`${API_BASE_URL}/list`);
           const movieList = await response.json();
           window.cachedMovieList = movieList;
         } catch (error) {
@@ -153,7 +154,7 @@ const App = () => {
       seen.add(currentId);
       try {
         // Fetch similar movies for the current movie
-        const response = await fetch('/similar', {
+        const response = await fetch(`${API_BASE_URL}/similar`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ movie_ids: [parseInt(currentId, 10)] }),
@@ -225,7 +226,7 @@ const App = () => {
 
   const handleFindSimilarMovies = async (movieId) => {
     try {
-      const response = await fetch('/similar', {
+      const response = await fetch(`${API_BASE_URL}/similar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

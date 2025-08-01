@@ -1,5 +1,6 @@
 
 import React, { useRef, useEffect, useState } from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://movie-recommendation-system-unbf.onrender.com";
 import { fetchSimilarMovies } from '../utils/fetchSimilarMovies';
 import { fetchMovieDetailsWithCredits } from '../utils/fetchMovieDetails';
 import './AISuggestedContent.css';
@@ -21,7 +22,7 @@ const AISuggestedContent = ({ likedMovies = [], onBack, onClear, onToggleLike })
     // Fetch similar movies for this new liked movie and merge
     const API_KEY = 'b537250515e995f02fabcdea18ff9124';
     try {
-      const response = await fetch('/similar', {
+      const response = await fetch(`${API_BASE_URL}/similar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ movie_ids: [movieId] }),
@@ -65,7 +66,7 @@ const AISuggestedContent = ({ likedMovies = [], onBack, onClear, onToggleLike })
       setCachedDetails(prev => ({ ...prev, [movie.id]: details }));
       // Fetch similar movies
       try {
-        const response = await fetch('/similar', {
+        const response = await fetch(`${API_BASE_URL}/similar`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ movie_ids: [movie.id] }),
