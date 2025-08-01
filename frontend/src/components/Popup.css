@@ -1,0 +1,290 @@
+.movie-details-page {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow: hidden;
+}
+
+.background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px) brightness(0.4);
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.content-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding: 40px 80px; /* Adjust padding to move content upward */
+  gap: 60px;
+  align-items: center;
+  transform: translateY(-20px); /* Move content upward */
+}
+
+.poster-section {
+  flex-shrink: 0;
+}
+
+.poster-card {
+  position: relative;
+  width: 320px;
+  height: 480px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.streaming-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.6), transparent); /* Adjust gradient direction */
+  padding: 20px 15px 15px;
+  color: white;
+  text-align: left; /* Align content to the left */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align items */
+  gap: 5px; /* Add spacing between text and logo */
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.info-section {
+  flex: 1;
+  color: white;
+  max-width: 800px;
+}
+
+.movie-header {
+  margin-bottom: 30px;
+}
+
+.movie-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.movie-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+  color: #b3b3b3;
+  flex-wrap: wrap;
+}
+
+.rating-badge {
+  background: #666;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.rating-disc {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #00d4ff calc(var(--rating, 0) * 36deg), /* Calculate percentage based on rating */
+    #1a1a1a calc(var(--rating, 0) * 36deg)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.rating-disc::before {
+  content: '';
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+.rating-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  z-index: 1;
+}
+
+.btn-play-trailer {
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+  margin-bottom: 40px;
+}
+
+.btn-play-trailer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.play-icon {
+  font-size: 16px;
+}
+
+.movie-description {
+  margin-bottom: 30px;
+}
+
+.tagline {
+  font-size: 20px;
+  font-style: italic;
+  color: #00d4ff;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.overview h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.overview p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #cccccc;
+  margin: 0;
+}
+
+.crew-info {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+.director-info h4 {
+  font-size: 18px;
+  margin: 0 0 5px 0;
+  color: white;
+}
+
+.director-info p {
+  font-size: 14px;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), transparent); /* Diagonal overlay */
+  color: white;
+  padding: 15px 25px; /* Maintain padding */
+  border-radius: 8px; /* Keep border radius */
+  font-size: 18px; /* Maintain font size */
+  font-weight: 700; /* Keep text bold */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: none; /* Remove box shadow */
+  z-index: 2000; /* Ensure it appears above other elements */
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, rgba(55, 55, 55, 0.8), transparent); /* Darker overlay on hover */
+}
+
+.back-button .arrow {
+  font-size: 28px; /* Increase arrow size */
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .content-container {
+    padding: 40px 40px;
+    gap: 40px;
+  }
+
+  .movie-title {
+    font-size: 36px;
+  }
+
+  .poster-card {
+    width: 280px;
+    height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .poster-card {
+    width: 240px;
+    height: 360px;
+  }
+
+  .movie-title {
+    font-size: 28px;
+  }
+
+  .movie-subtitle {
+    font-size: 14px;
+  }
+}
+
+body.popup-active {
+  overflow: hidden;
+}

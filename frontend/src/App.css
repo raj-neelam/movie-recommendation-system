@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #141414;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.app {
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Further increase the maximum width of the search box */
+  margin: 0 auto;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  flex: 1;
+  max-width: 600px; /* Further increase the maximum width of the search box */
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #f40612;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Show 5 cards per row */
+  gap: 20px;
+  padding: 0 10px; /* Reduce side padding */
+  margin: 40px auto 0 auto; /* Add top margin to prevent overlap */
+}
+
+/* Removed movie card related styles as they are now in MovieCard.css */
+
+.movie-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.rating {
+  color: #ffd700;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.year {
+  color: #b3b3b3;
+  font-weight: 500;
+}
+
+.duration {
+  color: #b3b3b3;
+  font-weight: 500;
+}
+
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.genre-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 10px; /* Reduce font size */
+  font-weight: 600;
+  padding: 3px 8px; /* Adjust padding */
+  border-radius: 10px; /* Adjust border radius */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.director {
+  color: #d1d5db;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* Subtle glow effect */
+.movie-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.movie-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes subtleFadeIn {
+  from {
+    opacity: 0.8;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Update styles for the suggestions list to overlay over movies and match the search box width */
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #444;
+  background-color: #222;
+  color: #fff;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.suggestion-item:hover {
+  background-color: #444;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+/* Add fade-out animation for suggestions */
+.suggestions-list.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Improved mobile responsiveness */
+@media (max-width: 768px) {
+  .movie-card {
+    width: 240px;
+    height: 360px;
+  }
+  
+  .movie-title {
+    font-size: 18px;
+  }
+  
+  .movie-meta {
+    font-size: 12px;
+  }
+}

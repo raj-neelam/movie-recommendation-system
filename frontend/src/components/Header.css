@@ -1,0 +1,89 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header-title {
+  margin-bottom: 12px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+}
+
+.header-title h1 {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.created-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: #b0b0b0; /* Lighter gray */
+  font-weight: 400;
+  opacity: 0.92;
+  white-space: nowrap;
+  height: 40%;
+}
+
+.created-by:hover, .floating-created-by:hover {
+  color: #b0b0b0 !important;
+  transform: scale(1.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.floating-created-by {
+  position: absolute;
+  left: 95%;
+  top: 60%;
+  background: none;
+  min-width: 260px;
+  max-width: 400px;
+  width: max-content;
+  padding: 6px 24px 6px 16px;
+  border-radius: 24px;
+  box-shadow: none;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.github-avatar-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.created-by:hover .github-avatar-img,
+.floating-created-by:hover .github-avatar-img {
+  transform: scale(1.12);
+  box-shadow: 0 0 16px 4px #ffffff55, 0 2px 12px rgba(0,0,0,0.18);
+}
+
+.created-by-name {
+  font-weight: 600;
+  color: #fff;
+  margin-left: 4px;
+}
